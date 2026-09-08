@@ -6,6 +6,7 @@ export const enLocale: LocalePlugin = {
   label: "English",
   messages: {
     "common.ok": "OK",
+    "common.cancel": "Cancel",
     "common.language": "Language",
     "common.models": "Models",
     "common.skills": "Skills",
@@ -83,6 +84,7 @@ export const enLocale: LocalePlugin = {
     "agents.copyName": "{name} copy",
     "agents.delete": "Delete",
     "agents.deleteConfirm": "Delete {name}?",
+    "agents.deleteTitle": "Delete sub-agent",
     "agents.save": "Save",
     "agents.saving": "Saving...",
     "agents.scope.builtin": "built-in",

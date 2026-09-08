@@ -6,6 +6,7 @@ export const zhTWLocale: LocalePlugin = {
   label: "繁體中文",
   messages: {
     "common.ok": "確定",
+    "common.cancel": "取消",
     "common.language": "語言",
     "common.models": "模型",
     "common.skills": "技能",
@@ -83,6 +84,7 @@ export const zhTWLocale: LocalePlugin = {
     "agents.copyName": "{name} 副本",
     "agents.delete": "刪除",
     "agents.deleteConfirm": "刪除 {name}？",
+    "agents.deleteTitle": "刪除子代理",
     "agents.save": "儲存",
     "agents.saving": "正在儲存...",
     "agents.scope.builtin": "內建",

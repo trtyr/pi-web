@@ -11,6 +11,7 @@ import { TabBar, type Tab } from "./TabBar";
 import { openFileTab, saveFileViewerState } from "./file-tab-state";
 import { SettingsPanel, SettingsSectionIcon } from "./SettingsPanel";
 import { ProjectTrustDialog } from "./ProjectTrustDialog";
+import { DialogsProvider } from "./Dialog";
 import { BranchNavigator, hasSessionBranches } from "./BranchNavigator";
 import { SystemPromptPanel } from "./SystemPromptPanel";
 import { ToolDefinitionsPanel } from "./ToolDefinitionsPanel";
@@ -1870,6 +1871,7 @@ export function AppShell() {
 
   return (
     <>
+    <DialogsProvider>
     <style>{`
       @keyframes session-info-pop {
         0% {
@@ -2687,6 +2689,7 @@ export function AppShell() {
         onConfirm={() => void handleTrustProject()}
       />
     )}
+    </DialogsProvider>
     </>
   );
 }

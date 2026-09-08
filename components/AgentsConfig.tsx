@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from "react";
 import { useI18n } from "@/hooks/useI18n";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useDialogs } from "@/components/Dialog";
 import type { SubagentProfilesResponse, SubagentSettingsResponse } from "@/lib/api-types";
 import { sendAgentCommand } from "@/lib/agent-client";
 import type { ModelsData } from "@/lib/models-cache";
@@ -149,6 +150,7 @@ export function AgentsConfig({
 }) {
   const isMobile = useIsMobile();
   const { t } = useI18n();
+  const dialogs = useDialogs();
   const [profiles, setProfiles] = useState<SubagentProfile[]>([]);
   const [modelOptions, setModelOptions] = useState<ModelsData["modelList"]>([]);
   const [modelsLoading, setModelsLoading] = useState(true);
@@ -318,7 +320,13 @@ export function AgentsConfig({
 
   const remove = async () => {
     if (!selected || !isWritableScope(selected.scope)) return;
-    if (!window.confirm(t("agents.deleteConfirm", { name: selected.displayName }))) return;
+    const confirmed = await dialogs.confirm({
+      title: t("agents.deleteTitle"),
+      message: t("agents.deleteConfirm", { name: selected.displayName }),
+      confirmLabel: t("agents.delete"),
+      tone: "danger",
+    });
+    if (!confirmed) return;
     setSaving(true);
     setError(null);
     try {

@@ -6,6 +6,7 @@ export const zhCNLocale: LocalePlugin = {
   label: "简体中文",
   messages: {
     "common.ok": "确定",
+    "common.cancel": "取消",
     "common.language": "语言",
     "common.models": "模型",
     "common.skills": "技能",
@@ -83,6 +84,7 @@ export const zhCNLocale: LocalePlugin = {
     "agents.copyName": "{name} 副本",
     "agents.delete": "删除",
     "agents.deleteConfirm": "删除 {name}？",
+    "agents.deleteTitle": "删除子代理",
     "agents.save": "保存",
     "agents.saving": "正在保存...",
     "agents.scope.builtin": "内置",
