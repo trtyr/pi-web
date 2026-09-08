@@ -10,6 +10,7 @@ import {
 import { gt, maxSatisfying, rcompare, valid, validRange } from "semver";
 import type { PluginScope, PluginUpdateResult } from "@/lib/api-types";
 import { getProjectTrustStatus } from "./project-trust";
+import { resolveNpmCommand } from "./npm-cli";
 
 const execFileAsync = promisify(execFile);
 
@@ -97,7 +98,9 @@ async function runCommand(
   args: string[],
   options: { cwd: string; env?: NodeJS.ProcessEnv },
 ): Promise<string> {
-  const { stdout } = await execFileAsync(command, args, {
+  // Bare "npm" cannot be spawned via execFile on Windows (npm.cmd + CVE-2024-27980).
+  const { command: cmd, prefix } = resolveNpmCommand(command);
+  const { stdout } = await execFileAsync(cmd, [...prefix, ...args], {
     cwd: options.cwd,
     env: options.env ? { ...process.env, ...options.env } : process.env,
     encoding: "utf8",
